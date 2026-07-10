@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OSMM — Machine Mathematics. The operating environment for machine mathematics.</title>
+<meta name="description" content="OSMM (say it: awesome) turns formal libraries and research history into a live map of proved routes, failed routes, valid transports, and open residuals — then dispatches bounded research agents to close what remains.">
+<meta property="og:title" content="OSMM — Machine Mathematics">
+<meta property="og:description" content="Research that remembers. The operating environment for machine mathematics.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://osmm.ai">
+<style>
+:root{
+  --bg:#07090e;--bg2:#0b0f17;--panel:#101623;--line:#1c2536;
+  --ink:#e8ecf4;--mut:#8b96ab;--dim:#5a6478;--gold:#e8b44c;
+  --gold2:#f5d488;--green:#4dc98a;--red:#e06c6c;--blue:#6ea8ff;
+  --mono:"SF Mono",SFMono-Regular,ui-monospace,Consolas,"Liberation Mono",monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  --serif:Georgia,"Times New Roman",serif
+}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:17px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}code,.mono{font-family:var(--mono)}
+section{padding:96px 24px}.wrap{max-width:1060px;margin:0 auto}.narrow{max-width:780px;margin:0 auto}
+h1,h2,h3{font-weight:700;letter-spacing:-.015em}h2{font-size:clamp(28px,4vw,40px);line-height:1.15;margin-bottom:18px}h3{font-size:19px;margin-bottom:10px}
+p{color:var(--mut)}p.lead{font-size:20px;color:#c3ccdd}.kicker{font:600 12px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+nav{position:sticky;top:0;z-index:50;background:rgba(7,9,14,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1160px}.logo{font:700 20px var(--sans);color:var(--ink);letter-spacing:-.02em}.logo .dot{color:var(--gold)}
+.nav-links{display:flex;gap:26px;font-size:14px}.nav-links a{color:var(--mut)}.nav-links a:hover{color:var(--ink);text-decoration:none}@media(max-width:720px){.nav-links{display:none}}
+.hero{position:relative;padding:130px 24px 110px;overflow:hidden;background:radial-gradient(1100px 500px at 50% -10%,rgba(232,180,76,.10),transparent 60%),radial-gradient(900px 600px at 85% 20%,rgba(110,168,255,.06),transparent 55%),var(--bg)}
+.hero .wrap{max-width:900px;text-align:center}.say{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:999px;padding:7px 18px;font:500 14px var(--mono);color:var(--mut);margin-bottom:34px;background:rgba(16,22,35,.6)}.say b{color:var(--gold)}
+.hero h1{font-size:clamp(52px,9vw,104px);line-height:.98;letter-spacing:-.03em;margin-bottom:10px}.hero h1 .aw{background:linear-gradient(100deg,var(--gold) 10%,var(--gold2) 50%,var(--gold) 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{font-size:clamp(19px,2.6vw,26px);color:#c3ccdd;margin:22px auto 14px;max-width:44ch}.hero .tag{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--dim)}
+.cta-row{display:flex;gap:14px;justify-content:center;margin-top:44px;flex-wrap:wrap}.btn{display:inline-block;padding:13px 28px;border-radius:10px;font:600 15px var(--sans);transition:transform .15s ease}.btn:hover{text-decoration:none;transform:translateY(-1px)}.btn.gold{background:var(--gold);color:#161006}.btn.ghost{border:1px solid var(--line);color:var(--ink)}
+.hero .cli{margin-top:52px;display:inline-block;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 26px;font:14px/1.9 var(--mono);color:var(--mut)}.hero .cli .c{color:var(--dim)}.hero .cli .g{color:var(--green)}.hero .cli .y{color:var(--gold)}.hero .cli .r{color:var(--red)}
+.problem{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.problem .grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}@media(max-width:840px){.problem .grid{grid-template-columns:1fr}}
+.forgets{font-family:var(--serif);font-size:clamp(24px,3.4vw,34px);line-height:1.3;color:var(--ink)}.forgets em{color:var(--gold);font-style:normal}
+.ledger-list{list-style:none;display:flex;flex-direction:column;gap:14px}.ledger-list li{display:flex;gap:14px;align-items:flex-start;font-size:15.5px;color:var(--mut)}.ledger-list .m{font-family:var(--mono);font-size:12px;padding:3px 9px;border-radius:6px;white-space:nowrap;margin-top:2px}.m.kept{background:rgba(77,201,138,.12);color:var(--green)}.m.lost{background:rgba(224,108,108,.12);color:var(--red)}
+.mapviz{margin:56px auto 0;max-width:940px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:30px}.mapviz svg{width:100%;height:auto;display:block}.legend{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:20px;font:13px var(--mono);color:var(--mut)}.legend span{display:inline-flex;align-items:center;gap:8px}.sw{width:22px;height:3px;border-radius:2px;display:inline-block}
+.pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:48px}@media(max-width:840px){.pillars{grid-template-columns:1fr}}.pillar{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px}.pillar .n{font:700 13px var(--mono);color:var(--gold);letter-spacing:.1em;margin-bottom:12px}.pillar h3{color:var(--ink)}.pillar p{font-size:15.5px}.pillar code{font-size:13px;color:var(--blue)}
+.ladder{display:flex;flex-direction:column;gap:0;margin-top:48px;border:1px solid var(--line);border-radius:14px;overflow:hidden}.rung{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:26px 30px;background:var(--panel);border-bottom:1px solid var(--line);align-items:baseline}.rung:last-child{border-bottom:none}.rung .lvl{font:700 15px var(--mono);color:var(--gold)}.rung h3{color:var(--ink);display:inline}.rung p{font-size:15.5px;margin-top:6px}.rung.now{background:linear-gradient(90deg,rgba(232,180,76,.06),var(--panel) 40%)}@media(max-width:640px){.rung{grid-template-columns:1fr;gap:6px}}
+.vision{background:radial-gradient(900px 500px at 50% 0%,rgba(232,180,76,.07),transparent 60%),var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.vision .big{font-family:var(--serif);font-size:clamp(24px,3.6vw,36px);line-height:1.35;color:var(--ink);margin:30px 0}.vision .big em{color:var(--gold);font-style:normal}.wandlist{display:flex;flex-direction:column;gap:26px;margin-top:44px}.wand{display:grid;grid-template-columns:56px 1fr;gap:22px;align-items:flex-start}.wand .i{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--panel);display:flex;align-items:center;justify-content:center;font-size:20px}.wand h3{color:var(--ink)}.wand p{font-size:16px}
+.honesty table{width:100%;border-collapse:collapse;margin-top:34px;font-size:15px}.honesty th,.honesty td{border:1px solid var(--line);padding:13px 16px;text-align:left;vertical-align:top}.honesty th{background:var(--panel);font:600 13px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}.honesty td{color:var(--mut)}.honesty td:first-child{color:var(--ink)}.pill{font:600 11px var(--mono);letter-spacing:.08em;padding:3px 10px;border-radius:999px;white-space:nowrap}.pill.live{background:rgba(77,201,138,.14);color:var(--green)}.pill.open{background:rgba(232,180,76,.14);color:var(--gold)}.law{margin-top:34px;border-left:3px solid var(--gold);background:var(--panel);padding:20px 24px;border-radius:0 10px 10px 0}.law p{color:#c3ccdd;font-size:16px}
+footer{border-top:1px solid var(--line);padding:60px 24px 80px;background:var(--bg)}footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;max-width:1060px}footer p{font-size:14px;color:var(--dim)}footer .logo{font-size:22px}.domains{font:13px var(--mono);color:var(--dim);margin-top:10px}.center{text-align:center}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><div class="logo">OSMM<span class="dot">.</span></div><div class="nav-links"><a href="#problem">Why</a><a href="#system">The System</a><a href="#ladder">Depth</a><a href="#vision">The Vision</a><a href="#honesty">What Is Real</a><a href="https://cutset.io">Cutset ↗</a></div></div></nav>
+<header class="hero"><div class="wrap">
+  <div class="say">say it: <b>“awesome”</b> &nbsp;·&nbsp; write it: <b>OSMM</b></div>
+  <h1><span class="aw">OSMM</span></h1>
+  <p class="sub"><b>Machine Mathematics.</b> The operating environment for machine mathematics.</p>
+  <p class="tag">Research that remembers.</p>
+  <div class="cta-row"><a class="btn gold" href="#vision">See the vision</a><a class="btn ghost" href="#system">How it works</a></div>
+  <div class="cli"><span class="c">$</span> osmm compose riemann<br><span class="g">✓</span> 41 theorem-grade routes &nbsp;<span class="r">✗</span> 22 banked walls &nbsp;<span class="y">◌</span> 3 open residuals<br><span class="c">$</span> osmm dispatch --residual R2 --gate lean<br><span class="g">contract signed</span> · bounded · advice can never become theorem</div>
+</div></header>
+<section class="problem" id="problem"><div class="wrap"><div class="grid">
+  <div><div class="kicker">The Problem</div><p class="forgets">Mathematics has perfect memory for what worked, and <em>almost none for what didn’t.</em></p><p style="margin-top:20px">Formal libraries preserve every theorem that passed. But the failed formulations, the dead routes, the exact constraint each failure carved out of the search space — those live in notebooks, chat logs, and the heads of the people who tried. When they leave, the field re-walks the same dead ends. Machines inherit the same amnesia at a million times the speed.</p></div>
+  <ul class="ledger-list"><li><span class="m kept">KEPT</span> Theorems, proofs, definitions — the positive library</li><li><span class="m lost">LOST</span> Failed formulations and why each one died</li><li><span class="m lost">LOST</span> The constraint each failure proved about the search space</li><li><span class="m lost">LOST</span> Which routes survive and what evidence would close them</li><li><span class="m lost">LOST</span> Years of attempt history when a campaign changes hands</li></ul>
+</div></div></section>
+<section id="system"><div class="wrap">
+  <div class="kicker">The System</div><h2>A live map of proof pressure — and the machinery to act on it.</h2>
+  <p class="lead" style="max-width:62ch">OSMM turns a formal library and a research history into persistent, typed state: what is proved, what has failed, which constraints those failures created, which routes still survive, and exactly what evidence would close the remaining gap.</p>
+  <div class="mapviz" aria-label="Diagram of a boxed-in open problem"><svg viewBox="0 0 880 320" role="img"><defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4dc98a"/></marker></defs>
+    <path d="M60,160 C180,60 320,60 430,120" stroke="#4dc98a" stroke-width="2.5" fill="none" marker-end="url(#ar)"/><path d="M60,160 C180,260 300,270 430,200" stroke="#4dc98a" stroke-width="2.5" fill="none" marker-end="url(#ar)"/>
+    <path d="M60,160 C220,150 300,110 400,80" stroke="#e06c6c" stroke-width="2" fill="none" stroke-dasharray="7 6"/><line x1="392" y1="68" x2="410" y2="92" stroke="#e06c6c" stroke-width="2.5"/><line x1="410" y1="68" x2="392" y2="92" stroke="#e06c6c" stroke-width="2.5"/>
+    <path d="M60,160 C200,200 330,235 420,260" stroke="#e06c6c" stroke-width="2" fill="none" stroke-dasharray="7 6"/><line x1="412" y1="248" x2="430" y2="272" stroke="#e06c6c" stroke-width="2.5"/><line x1="430" y1="248" x2="412" y2="272" stroke="#e06c6c" stroke-width="2.5"/>
+    <path d="M470,90 C540,120 540,200 470,230" stroke="#e8b44c" stroke-width="2.5" fill="none" stroke-dasharray="3 6" stroke-linecap="round"/><circle cx="470" cy="90" r="7" fill="#0b0f17" stroke="#e8b44c" stroke-width="2.5"/><circle cx="505" cy="160" r="7" fill="#0b0f17" stroke="#e8b44c" stroke-width="2.5"/><circle cx="470" cy="230" r="7" fill="#0b0f17" stroke="#e8b44c" stroke-width="2.5"/>
+    <circle cx="700" cy="160" r="34" fill="none" stroke="#6ea8ff" stroke-width="2"/><circle cx="700" cy="160" r="26" fill="rgba(110,168,255,.08)"/><text x="700" y="165" font-family="monospace" font-size="13" fill="#6ea8ff" text-anchor="middle">GOAL</text><path d="M512,160 C580,160 620,160 660,160" stroke="#3a4763" stroke-width="1.6" fill="none" stroke-dasharray="4 6"/><circle cx="60" cy="160" r="8" fill="#e8ecf4"/><text x="60" y="196" font-family="monospace" font-size="12" fill="#8b96ab" text-anchor="middle">library + history</text><text x="505" y="286" font-family="monospace" font-size="12" fill="#e8b44c" text-anchor="middle">residual cut-set: what still separates you from closure</text>
+  </svg><div class="legend"><span><i class="sw" style="background:#4dc98a"></i> proved routes</span><span><i class="sw" style="background:#e06c6c"></i> banked walls</span><span><i class="sw" style="background:#e8b44c"></i> open residuals</span><span><i class="sw" style="background:#6ea8ff"></i> the goal</span></div></div>
+  <div class="pillars">
+    <div class="pillar"><div class="n">01 · NEGATIVE KNOWLEDGE</div><h3>Every failure becomes an asset.</h3><p>A failed attack is banked as a typed <b>wall</b>: what it killed, the constraint it extracted, and which route inherits that constraint. Failure becomes a permanently smaller search space. This is the negative twin of a theorem library.</p></div>
+    <div class="pillar"><div class="n">02 · THE RESIDUAL</div><h3>Know exactly what remains.</h3><p>Compose the positives, walls, and transports, and the system computes the <b>residual cut-set</b>: the minimal set of open objects separating you from closure. How boxed-in is this proof? Now that question has an answer.</p></div>
+    <div class="pillar"><div class="n">03 · GRAMMAR &amp; TRANSPORT</div><h3>Move results between worlds — with receipts.</h3><p>A typed grammar (the <b>δ machinery</b>) carries results among mathematical, physical, and semantic representations through checked transport squares. Theorems become typed tools that compose instead of prose that decays.</p></div>
+    <div class="pillar"><div class="n">04 · BOUNDED AGENTS</div><h3>Dispatch research, not chat.</h3><p>Any residual can become a signed, finite research contract: one writer, a fixed deterministic gate, a typed terminal state. Agents attack the frontier under the <b>Foreman</b>. The map contracts only when the judge admits a receipt.</p></div>
+  </div>
+</div></section>
+<section id="ladder"><div class="narrow"><div class="kicker">Four Levels Deep</div><h2>From seeing the frontier to closing it.</h2><div class="ladder">
+  <div class="rung now"><div class="lvl">LEVEL 1</div><div><h3>SEE.</h3><p>Load any registered goal and inspect its dependency cone, theorem-grade edges, killed formulations, and live survivors.</p></div></div>
+  <div class="rung now"><div class="lvl">LEVEL 2</div><div><h3>UNDERSTAND.</h3><p>Know why the problem is boxed in, which assumptions carry each route, and which missing object would collapse the remaining distance.</p></div></div>
+  <div class="rung"><div class="lvl">LEVEL 3</div><div><h3>ACT.</h3><p>Apply typed theorem tools through checked transports, or turn a residual into a bounded contract and send agents against it.</p></div></div>
+  <div class="rung"><div class="lvl">LEVEL 4</div><div><h3>CLOSE.</h3><p>The system selects the binding residual, compiles a legal attack, runs it, and deposits the verified result back into the map.</p></div></div>
+</div></div></section>
+<section class="vision" id="vision"><div class="narrow"><div class="kicker">Magic Wand</div><h2>What this becomes if it fully works.</h2><p class="big">Mathematics stops being a scattered literature and becomes a <em>single, live, machine-actionable territory</em> — where every attempt by anyone permanently narrows the space for everyone.</p>
+<div class="wandlist">
+  <div class="wand"><div class="i">🗺️</div><div><h3>Every open problem gets a shape.</h3><p>Each becomes a boxed object with a visible frontier: what is proved, what is dead, what remains, and what evidence would end it.</p></div></div>
+  <div class="wand"><div class="i">🧱</div><div><h3>Humanity stops re-failing.</h3><p>A route dies once, globally, with its constraint extracted and inherited. Centuries of repeated failure get recycled into search-space contraction.</p></div></div>
+  <div class="wand"><div class="i">⚙️</div><div><h3>Proof becomes an industrial process.</h3><p>Fleets of bounded agents work the residual frontier under deterministic gates that no amount of eloquence can bypass.</p></div></div>
+  <div class="wand"><div class="i">🌉</div><div><h3>Math flows into the physical world through a checked grammar.</h3><p>The δ transport layer carries results, with receipts, into physical and semantic representations. Mathematics becomes infrastructure.</p></div></div>
+  <div class="wand"><div class="i">🌅</div><div><h3>The frontier closes itself.</h3><p>Machines understand how boxed-in every open problem is and autonomously close the remaining mathematical distance. Not a chatbot that talks about math. A system that finishes it.</p></div></div>
+</div></div></section>
+<section class="honesty" id="honesty"><div class="narrow"><div class="kicker">No False Promises</div><h2>What is real today, and what is still open.</h2><p class="lead">OSMM’s own constitution forbids inflating advice into theorem — including on this page.</p>
+<table><thead><tr><th>Capability</th><th>Status</th></tr></thead><tbody>
+  <tr><td>Typed campaign state over live RH and δ carriers</td><td><span class="pill live">RUNNING</span></td></tr>
+  <tr><td>Constraint banking: kill → constraint → survivor</td><td><span class="pill live">RUNNING</span></td></tr>
+  <tr><td>Deterministic context capsules with typed omissions</td><td><span class="pill live">RUNNING</span></td></tr>
+  <tr><td>Signed event history, atomic append, anchored replay (95/95 tests)</td><td><span class="pill live">RUNNING</span></td></tr>
+  <tr><td>One-shot Foreman contracts and δ transport receipts</td><td><span class="pill live">RUNNING</span></td></tr>
+  <tr><td>Visual proof-pressure map</td><td><span class="pill open">BUILDING</span></td></tr>
+  <tr><td>Canonical event log with blocking enforcement</td><td><span class="pill open">OPEN</span></td></tr>
+  <tr><td>Full autonomous closure cycle</td><td><span class="pill open">OPEN</span></td></tr>
+</tbody></table>
+<div class="law"><p><b>The non-upgrade law.</b> No agent, panel, interface, or confident paragraph can promote an open statement to a theorem. Only a deterministic judge changes mathematical status. Advice is advice. Proof is proof.</p></div>
+</div></section>
+<section class="center" style="padding:110px 24px"><div class="narrow"><h2 style="font-size:clamp(30px,5vw,48px)">Research that remembers.</h2><p class="lead" style="margin:16px auto 40px;max-width:46ch">One environment where proved routes, dead routes, and the open frontier are first-class objects — and where the frontier only moves when the proof checks.</p><div class="cta-row"><a class="btn gold" href="mailto:hello@osmm.ai">Get in touch</a><a class="btn ghost" href="https://cutset.io">Meet Cutset</a></div></div></section>
+<footer><div class="wrap"><div><div class="logo">OSMM<span class="dot">.</span></div><p style="margin-top:8px">Machine Mathematics — the operating environment for machine mathematics.</p><p class="domains">osmm.ai · itsosmm.com · <a href="https://cutset.io">cutset.io</a></p></div><div><p>Say it: <i>awesome</i>. Write it: <code>osmm</code>.<br><a href="https://cutset.io">Meet Cutset, OSMM’s residual-frontier engine →</a></p><p style="margin-top:8px">© 2026 · Built first for one mathematician’s campaigns.<br>Made public because the frontier belongs to everyone.</p></div></div></footer>
+</body>
+</html>
