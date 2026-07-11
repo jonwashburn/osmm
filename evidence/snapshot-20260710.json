@@ -1,0 +1,74 @@
+{
+  "schema": "osmm.public_evidence_snapshot.v1",
+  "as_of": "2026-07-10",
+  "scope": "Private research kernel and campaign adapters. No public product runtime is claimed.",
+  "source": {
+    "repository_visibility": "private",
+    "source_commit": "3bf4a2df16",
+    "public_verifiability": "RECORDED_UNLINKED"
+  },
+  "recorded_test_result": {
+    "result": "128/128 PASS",
+    "public_test_log": null,
+    "evidence_class": "RECORDED_UNLINKED"
+  },
+  "capabilities": [
+    {
+      "id": "schema_first_campaign_state",
+      "implementation": "RUNNING",
+      "enforcement": "ADVISORY",
+      "evidence": "RECORDED_UNLINKED",
+      "basis": [
+        "MACHINE_INDEX.jsonl",
+        "PLAN.jsonl",
+        "STATUS.txt"
+      ]
+    },
+    {
+      "id": "context_abi_and_reverse_mathlib_cli",
+      "implementation": "RUNNING",
+      "enforcement": "ADVISORY",
+      "evidence": "RECORDED_UNLINKED"
+    },
+    {
+      "id": "signed_transition_overlay_and_anchored_replay",
+      "implementation": "RUNNING",
+      "enforcement": "ADVISORY",
+      "evidence": "RECORDED_UNLINKED",
+      "limitations": [
+        "The event log is noncanonical.",
+        "There are zero production judge keys.",
+        "Structural novelty and wall binding do not establish mathematical truth."
+      ]
+    },
+    {
+      "id": "attempt_to_wall_admission",
+      "implementation": "BUILDING",
+      "enforcement": "ADVISORY",
+      "evidence": "RECORDED_UNLINKED",
+      "limitation": "ATTEMPT != WALL is the required protocol, but full admission enforcement is not yet shipped."
+    },
+    {
+      "id": "public_visual_product_and_registry",
+      "implementation": "OPEN",
+      "enforcement": "NONE",
+      "evidence": "NONE_CLAIMED"
+    },
+    {
+      "id": "autonomous_mathematical_closure",
+      "implementation": "OPEN",
+      "enforcement": "NONE",
+      "evidence": "NONE_CLAIMED"
+    }
+  ],
+  "laws": [
+    {
+      "statement": "OPEN != THEOREM",
+      "meaning": "Only a named deterministic checker may change theorem status."
+    },
+    {
+      "statement": "ATTEMPT != WALL",
+      "meaning": "An unsuccessful search becomes a wall only after scoped negative evidence is admitted."
+    }
+  ]
+}
