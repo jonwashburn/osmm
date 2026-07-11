@@ -1,0 +1,35 @@
+{
+  "schema": "osmm.public_evidence.active_transport.v1",
+  "dated": "2026-07-11",
+  "product": "OSMM Active Transport Gym",
+  "release": "v0.1",
+  "implementation_status": "SHIPPED",
+  "evidence_status": "MEASURED_SOFTWARE_ARTIFACT",
+  "capacity": "A model can select bounded interventions and propose a typed map between two generated finite dynamical representations; an exact OSMM C5-bound verifier accepts or refuses the scoped proposal.",
+  "counts": {
+    "episodes": 10000,
+    "worlds": {
+      "train": 320,
+      "dev": 64,
+      "test": 128,
+      "total": 512
+    },
+    "delta_anchor_records": 15,
+    "product_tests_passed": 9
+  },
+  "artifact": {
+    "path": "/products/active-transport/osmm-active-transport-gym-v0.1.tar.zst",
+    "bytes": 222586,
+    "sha256": "85f9a570781d6298a065f7b73fc7eb278bda4c08f7bdbd6299ce9474f983f05c"
+  },
+  "manifest": {
+    "path": "/products/active-transport/osmm-active-transport-gym-v0.1.manifest.json",
+    "sha256": "aecfbe2432726d741695df159a41a270fcd503efce561e2d58c4a58388dd08e6"
+  },
+  "authority_boundary": "Learned policies propose. The exact finite simulator and OSMM C5 transport binding decide scoped acceptance. No model output performs a canonical Ledger write.",
+  "claim_boundary": "The release measures formal/synthetic active bridge identification. Transfer to empirical world models and universal physical realization remain OPEN.",
+  "known_external_test_state": {
+    "active_transport_suite": "9/9 PASS",
+    "broader_osmm_suites": "Existing WORLD_DRIFT and AFCC source-hash drift failures remain outside this product change."
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "authority": "learned policies propose; exact finite verifier and OSMM C5 binding decide scoped acceptance; no canonical Ledger write occurs",
+  "claim_boundary": "formal/synthetic active bridge identification only; empirical-world transfer and universal physical realization remain OPEN",
+  "delta_anchor_count": 15,
+  "episode_counts": {
+    "dev": 1000,
+    "test": 1000,
+    "train": 8000
+  },
+  "release": "osmm-active-transport-gym-v0.1",
+  "schema": "osmm.active_transport.release_manifest.v1",
+  "seed": 20260711,
+  "source_digests": {
+    "c5_fixture": {
+      "path": "OS-Machine-Mathematics/tests/reverse_mathlib/test_c5_synthetic_world.py",
+      "sha256": "ae3b699227dc7c2152a1af2d9c7bf8cdd47e6c1eef4811fb74bd8c7592407f44"
+    },
+    "c5_kernel": {
+      "path": "OS-Machine-Mathematics/reverse_mathlib/core/c5_kernel.py",
+      "sha256": "9cf2f99c1e11da587391fe796a467b1ae1dd58460f5dd1c898311a6ba8f4811f"
+    },
+    "component_model": {
+      "path": "OS-Machine-Mathematics/product/OSMM_COMPONENT_MODEL.json",
+      "sha256": "0ca532728ac6bb84f0222150b1d28eb05084db3012762b1ad47414a9c1e9706a"
+    },
+    "delta_box": {
+      "path": "δ/DELTA_BOX.json",
+      "sha256": "ea5bb74d42ff7efeab835fbdcefbc75a692ac33dea223c3280d98923bc9813c7"
+    },
+    "ledger_path": {
+      "path": "OS-Machine-Mathematics/reverse_mathlib/core/ledger_path.py",
+      "sha256": "d11c018afd7de0647e65e51827079a1b31ad8ba178202092472cd97f2390f678"
+    }
+  },
+  "status": "MEASURED_SOFTWARE_ARTIFACT",
+  "world_counts": {
+    "dev": 64,
+    "test": 128,
+    "train": 320
+  }
+}
